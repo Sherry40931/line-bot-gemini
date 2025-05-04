@@ -8,26 +8,14 @@ from pathlib import Path
 
 import google.generativeai as genai
 from dotenv import load_dotenv
-from fastapi import BackgroundTasks
-from fastapi import FastAPI
-from fastapi import HTTPException
-from fastapi import Request
+from fastapi import BackgroundTasks, FastAPI, HTTPException, Request
 from linebot.v3 import WebhookParser
 from linebot.v3.exceptions import InvalidSignatureError
-from linebot.v3.messaging import ApiClient
-from linebot.v3.messaging import Configuration
-from linebot.v3.messaging import MessagingApi
-from linebot.v3.messaging import PushMessageRequest
-from linebot.v3.messaging import TextMessage
-from linebot.v3.webhooks import GroupSource
-from linebot.v3.webhooks import JoinEvent
-from linebot.v3.webhooks import LeaveEvent
-from linebot.v3.webhooks import MemberJoinedEvent
-from linebot.v3.webhooks import MessageEvent
-from linebot.v3.webhooks import RoomSource
-from linebot.v3.webhooks import Source
-from linebot.v3.webhooks import TextMessageContent
-from linebot.v3.webhooks import UserSource
+from linebot.v3.messaging import (ApiClient, Configuration, MessagingApi,
+                                  PushMessageRequest, TextMessage)
+from linebot.v3.webhooks import (GroupSource, JoinEvent, LeaveEvent,
+                                 MemberJoinedEvent, MessageEvent, RoomSource,
+                                 Source, TextMessageContent, UserSource)
 
 # --- Basic Logging Setup ---
 logging.basicConfig(
@@ -399,5 +387,11 @@ if __name__ == "__main__":
     logging.info(f"啟動伺服器於 http://{host}:{port} (Reload: {use_reload})")
     # 確保這裡執行的模組名稱是正確的，例如如果檔案名是 main.py，這裡應該是 "main:app"
     # 如果您將檔案命名為 angry_bot.py，則 "angry_bot:app" 是正確的
-    ssl_context = ssl.SS
-    uvicorn.run("bot:app", host=host, port=port, reload=use_reload, ssl=)
+    uvicorn.run(
+        "bot:app",
+        host=host,
+        port=port,
+        reload=use_reload,
+        ssl_keyfile="key.pem",
+        ssl_certfile="cert.pem",
+    )
