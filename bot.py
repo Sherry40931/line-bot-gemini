@@ -387,6 +387,11 @@ if __name__ == "__main__":
     logging.info(f"啟動伺服器於 http://{host}:{port} (Reload: {use_reload})")
     # 確保這裡執行的模組名稱是正確的，例如如果檔案名是 main.py，這裡應該是 "main:app"
     # 如果您將檔案命名為 angry_bot.py，則 "angry_bot:app" 是正確的
-    ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-    ssl_context.load_cert_chain(certfile="cert.pem", keyfile="key.pem")
-    uvicorn.run("bot:app", host=host, port=port, reload=use_reload, ssl=ssl_context)
+    uvicorn.run(
+        "bot:app",
+        host=host,
+        port=port,
+        reload=use_reload,
+        ssl_keyfile="key.pem",
+        ssl_certfile="cert.pem",
+    )
