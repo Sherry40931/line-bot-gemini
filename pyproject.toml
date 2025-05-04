@@ -1,0 +1,16 @@
+[project]
+name = "line-bot-gimini"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.115.12",
+    "google-genai>=1.13.0",
+    "google-generativeai>=0.8.5",
+    "line-bot-sdk>=3.17.0",
+    "pillow>=11.2.1",
+    "python-dotenv>=1.1.0",
+    "regex>=2024.11.6",
+    "uvicorn>=0.34.2",
+]
