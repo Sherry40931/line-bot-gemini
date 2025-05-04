@@ -3,6 +3,7 @@ import collections
 import json
 import logging
 import os
+import ssl
 from pathlib import Path
 
 import google.generativeai as genai
@@ -35,7 +36,7 @@ logging.basicConfig(
 
 # --- Load Environment Variables ---
 # 請確保您為每個 Bot 使用了正確的 .env 檔案或環境變數
-load_dotenv(".env_sherry_bot_v2")
+load_dotenv(".env/.env_sherry_bot_v2")
 LINE_CHANNEL_ACCESS_TOKEN = os.getenv("LINE_CHANNEL_ACCESS_TOKEN")
 LINE_CHANNEL_SECRET = os.getenv("LINE_CHANNEL_SECRET")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
@@ -398,4 +399,5 @@ if __name__ == "__main__":
     logging.info(f"啟動伺服器於 http://{host}:{port} (Reload: {use_reload})")
     # 確保這裡執行的模組名稱是正確的，例如如果檔案名是 main.py，這裡應該是 "main:app"
     # 如果您將檔案命名為 angry_bot.py，則 "angry_bot:app" 是正確的
-    uvicorn.run("sherry_bot2:app", host=host, port=port, reload=use_reload)
+    ssl_context = ssl.SS
+    uvicorn.run("bot:app", host=host, port=port, reload=use_reload, ssl=)
